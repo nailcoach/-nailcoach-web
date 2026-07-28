@@ -195,7 +195,7 @@ export default function Home() {
         <header className="topbar">
           <Link className="brand" href="/" aria-label="Nail Coach by Irina home">
             <span className="brand-script">Nail Coach</span>
-            <span className="brand-byline">BY IRINA</span>
+            <span className="brand-byline">BY IRINA KLAPSHA</span>
           </Link>
 
           <nav className="desktop-nav" aria-label="Main navigation">
@@ -312,7 +312,7 @@ export default function Home() {
         </aside>
 
         <div className="counter-signature" aria-hidden="true">
-          <span>Irina</span>
+          <span>Irina Klapsha</span>
           <small>NAIL EXPERT</small>
         </div>
 
@@ -344,7 +344,7 @@ export default function Home() {
                 onClick={() => setMenuOpen(false)}
               >
                 <span className="brand-script">Nail Coach</span>
-                <span className="brand-byline">BY IRINA</span>
+                <span className="brand-byline">BY IRINA KLAPSHA</span>
               </Link>
               <button
                 className="close-button"

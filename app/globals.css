@@ -127,9 +127,11 @@ a:focus-visible {
 }
 
 .brand-byline {
+  align-self: center;
   margin-top: 8px;
   font-size: 10px;
   letter-spacing: 0.32em;
+  white-space: nowrap;
 }
 
 .desktop-nav {
@@ -474,13 +476,16 @@ a:focus-visible {
   flex-direction: column;
   align-items: center;
   color: #fff;
+  text-align: center;
   text-shadow: 0 2px 12px rgba(71, 40, 27, 0.32);
+  transform: translateX(32.6%);
 }
 
 .counter-signature span {
   font-family: var(--script);
   font-size: clamp(48px, 4.1vw, 63px);
   line-height: 0.8;
+  white-space: nowrap;
 }
 
 .counter-signature small {
@@ -977,7 +982,6 @@ a:focus-visible {
 
   .brand-byline {
     margin-top: 6px;
-    padding-left: 4px;
     font-size: 7px;
   }
 
