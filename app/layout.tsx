@@ -3,6 +3,9 @@ import localFont from "next/font/local";
 import "./globals.css";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const siteUrl = "https://www.nailcoachai.com";
+const siteDescription =
+  "Learn professional nail techniques with Irina, an international nail judge and educator with 25+ years of experience and 10,000+ students worldwide.";
 
 const allura = localFont({
   src: "./fonts/allura-latin-400-normal.woff2",
@@ -56,12 +59,54 @@ const playfair = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Nail Coach by Irina",
-  description:
-    "Your personal AI nail mentor — learn from Irina's 25 years of experience, anytime and in any language.",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Nail Coach by Irina | AI Nail Education & Mentoring",
+    template: "%s | Nail Coach by Irina",
+  },
+  description: siteDescription,
+  applicationName: "Nail Coach by Irina",
+  authors: [{ name: "Irina", url: siteUrl }],
+  creator: "Irina",
+  publisher: "Nail Coach by Irina",
+  category: "education",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "/",
+    siteName: "Nail Coach by Irina",
+    title: "Nail Coach by Irina | AI Nail Education & Mentoring",
+    description: siteDescription,
+    images: [
+      {
+        url: `${basePath}/hero-background-v2.png`,
+        alt: "Nail Coach by Irina",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Nail Coach by Irina | AI Nail Education & Mentoring",
+    description: siteDescription,
+    images: [`${basePath}/hero-background-v2.png`],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   icons: {
     icon: `${basePath}/favicon.svg`,
-    shortcut: `${basePath}/favicon.svg`
+    shortcut: `${basePath}/favicon.svg`,
   },
 };
 
@@ -77,12 +122,30 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Nail Coach by Irina",
+    url: siteUrl,
+    description: siteDescription,
+    inLanguage: "en",
+    creator: {
+      "@type": "Person",
+      name: "Irina",
+      jobTitle: "Nail Educator and International Nail Judge",
+    },
+  };
+
   return (
     <html lang="en">
       <body
         className={`${allura.variable} ${inter.variable} ${playfair.variable}`}
       >
         {children}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
       </body>
     </html>
   );
