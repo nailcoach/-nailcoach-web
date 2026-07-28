@@ -81,10 +81,36 @@ export default async function PlaceholderPage({
         sizes="100vw"
         unoptimized
       />
-      <section className="placeholder-card">
+      <section
+        className={`placeholder-card${slug === "contacts" ? " contacts-card" : ""}`}
+      >
         <p className="eyebrow">NAIL COACH BY IRINA</p>
         <h1>{page.title}</h1>
-        <Link href="/">Back to Home</Link>
+        {slug === "contacts" && (
+          <address className="contact-list">
+            <a
+              className="contact-link"
+              href="mailto:nailcoach.ai@gmail.com"
+            >
+              <span className="contact-label">Email</span>
+              <span className="contact-value">nailcoach.ai@gmail.com</span>
+            </a>
+            <a
+              className="contact-link"
+              href="https://www.instagram.com/nails_irinaklapsha/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span className="contact-label">Instagram</span>
+              <span className="contact-value">
+                instagram.com/nails_irinaklapsha
+              </span>
+            </a>
+          </address>
+        )}
+        <Link className="back-home" href="/">
+          Back to Home
+        </Link>
       </section>
     </main>
   );

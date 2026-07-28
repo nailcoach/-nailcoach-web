@@ -667,7 +667,7 @@ a:focus-visible {
   font-weight: 500;
 }
 
-.placeholder-card a {
+.placeholder-card .back-home {
   display: inline-flex;
   min-height: 48px;
   align-items: center;
@@ -676,6 +676,79 @@ a:focus-visible {
   border-radius: 999px;
   background: var(--accent);
   color: #fff;
+}
+
+.contacts-card {
+  width: min(640px, calc(100% - 36px));
+}
+
+.contact-list {
+  display: grid;
+  gap: 12px;
+  margin: 26px 0 2px;
+  font-style: normal;
+  text-align: left;
+}
+
+.contact-link {
+  display: grid;
+  min-height: 76px;
+  align-content: center;
+  gap: 6px;
+  padding: 14px 20px;
+  border: 1px solid rgba(164, 88, 120, 0.18);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.42);
+  transition:
+    border-color 160ms ease,
+    background 160ms ease,
+    transform 160ms ease;
+}
+
+.contact-link:hover {
+  border-color: rgba(164, 88, 120, 0.46);
+  background: rgba(255, 255, 255, 0.62);
+  transform: translateY(-1px);
+}
+
+.contact-link:focus-visible {
+  outline-color: var(--accent);
+}
+
+.contact-label {
+  color: var(--accent-dark);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.contact-value {
+  overflow-wrap: anywhere;
+  font-size: clamp(16px, 2.2vw, 20px);
+}
+
+@media (max-width: 680px) {
+  .contacts-card {
+    padding: 32px 20px;
+  }
+
+  .contacts-card h1 {
+    font-size: clamp(46px, 15vw, 62px);
+  }
+
+  .contact-list {
+    margin-top: 22px;
+  }
+
+  .contact-link {
+    min-height: 70px;
+    padding-inline: 16px;
+  }
+
+  .contact-value {
+    font-size: 15px;
+  }
 }
 
 @media (max-width: 1280px) {
