@@ -130,7 +130,9 @@ a:focus-visible {
 .brand-byline {
   align-self: center;
   margin-top: 8px;
+  font-family: var(--font-inter), Arial, sans-serif;
   font-size: 10px;
+  font-weight: 400;
   letter-spacing: 0.32em;
   line-height: 1;
   white-space: nowrap;
