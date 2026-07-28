@@ -199,7 +199,7 @@ export default function Home() {
             aria-label="Nail Coach — Irina Klapsha home"
           >
             <span className="brand-script">Nail Coach</span>
-            <span className="brand-name">Irina Klapsha</span>
+            <span className="brand-byline">BY IRINA KLAPSHA</span>
           </Link>
 
           <nav className="desktop-nav" aria-label="Main navigation">
@@ -348,7 +348,7 @@ export default function Home() {
                 onClick={() => setMenuOpen(false)}
               >
                 <span className="brand-script">Nail Coach</span>
-                <span className="brand-name">Irina Klapsha</span>
+                <span className="brand-byline">BY IRINA KLAPSHA</span>
               </Link>
               <button
                 className="close-button"

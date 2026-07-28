@@ -119,8 +119,7 @@ a:focus-visible {
   text-shadow: 0 1px 12px rgba(21, 15, 13, 0.35);
 }
 
-.brand-script,
-.brand-name {
+.brand-script {
   font-family: var(--font-allura), cursive;
   font-size: clamp(35px, 2.72vw, 43px);
   font-weight: 400;
@@ -128,9 +127,15 @@ a:focus-visible {
   white-space: nowrap;
 }
 
-.brand-name {
+.brand-byline {
   align-self: center;
   margin-top: 8px;
+  font-family: var(--font-inter), Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.32em;
+  line-height: 1;
+  white-space: nowrap;
 }
 
 .desktop-nav {
@@ -686,6 +691,13 @@ a:focus-visible {
   font-weight: 500;
 }
 
+.placeholder-card .placeholder-title-long {
+  font-size: clamp(42px, 6.4vw, 66px);
+  letter-spacing: clamp(-0.035em, -0.02em, -0.015em);
+  line-height: 1.04;
+  text-wrap: balance;
+}
+
 .placeholder-card .back-home {
   display: inline-flex;
   min-height: 48px;
@@ -1124,13 +1136,13 @@ a:focus-visible {
     align-items: center;
   }
 
-  .brand-script,
-  .brand-name {
+  .brand-script {
     font-size: 29px;
   }
 
-  .brand-name {
-    margin-top: 5px;
+  .brand-byline {
+    margin-top: 6px;
+    font-size: 7px;
   }
 
   .header-actions {

@@ -5,12 +5,13 @@ import { notFound } from "next/navigation";
 
 const pages: Record<string, { title: string; description: string }> = {
   about: {
-    title: "About Irina",
-    description: "Learn more about Irina's professional nail education journey.",
+    title: "About Irina Klapsha",
+    description:
+      "Learn more about Irina Klapsha's professional nail education journey.",
   },
   courses: {
     title: "Courses",
-    description: "Explore professional nail education courses by Irina.",
+    description: "Explore professional nail education courses by Irina Klapsha.",
   },
   "ai-mentor": {
     title: "AI Mentor",
@@ -26,11 +27,11 @@ const pages: Record<string, { title: string; description: string }> = {
   },
   contacts: {
     title: "Contacts",
-    description: "Contact Nail Coach by Irina.",
+    description: "Contact Nail Coach by Irina Klapsha.",
   },
   login: {
     title: "Log In",
-    description: "Log in to Nail Coach by Irina.",
+    description: "Log in to Nail Coach by Irina Klapsha.",
   },
 };
 
@@ -84,8 +85,10 @@ export default async function PlaceholderPage({
       <section
         className={`placeholder-card${slug === "contacts" ? " contacts-card" : ""}`}
       >
-        <p className="eyebrow">NAIL COACH BY IRINA</p>
-        <h1>{page.title}</h1>
+        <p className="eyebrow">NAIL COACH BY IRINA KLAPSHA</p>
+        <h1 className={slug === "about" ? "placeholder-title-long" : undefined}>
+          {page.title}
+        </h1>
         {slug === "contacts" && (
           <address className="contact-list">
             <a
