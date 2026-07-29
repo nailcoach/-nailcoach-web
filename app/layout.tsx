@@ -106,8 +106,8 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: `${basePath}/favicon.svg`,
-    shortcut: `${basePath}/favicon.svg`,
+    icon: `${basePath}/nail-coach-icon.svg`,
+    shortcut: `${basePath}/nail-coach-icon.svg`,
   },
 };
 
