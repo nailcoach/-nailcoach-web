@@ -105,10 +105,6 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
-  icons: {
-    icon: `${basePath}/nail-coach-icon.svg`,
-    shortcut: `${basePath}/nail-coach-icon.svg`,
-  },
 };
 
 export const viewport: Viewport = {
