@@ -1435,9 +1435,22 @@ a:focus-visible {
     align-self: flex-start;
   }
 
-  .portrait {
-    left: 80%;
+  .hero .hero-copy {
+    left: 13px;
+    width: calc(100% - 26px);
+  }
+
+  .hero .portrait {
+    left: min(calc(100vw - 36px), calc(100vw - 14.15dvh + 44px));
     width: clamp(192px, calc(78.3dvh - 252px), 480px);
+  }
+
+  .hero-copy .intro {
+    width: clamp(
+      170px,
+      min(calc(100vw - 95px), calc(100vw - 28.23dvh + 65px)),
+      345px
+    );
   }
 
   .portrait-contact-shadows {
@@ -1457,7 +1470,7 @@ a:focus-visible {
     grid-template-rows: repeat(4, minmax(0, 1fr));
   }
 
-  .highlight {
+  .highlights .highlight {
     min-height: 0;
     grid-template-columns: 24px minmax(0, 1fr);
     gap: 5px;
