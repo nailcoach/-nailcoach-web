@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import "./about.css";
 import { IRINA_EXPERIENCE_LABEL } from "./site-content";
+import RotatePhoneScreen from "./rotate-phone-screen";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const siteUrl = "https://www.nailcoachai.com";
@@ -163,6 +164,7 @@ export default function RootLayout({
         className={`${allura.variable} ${inter.variable} ${playfair.variable}`}
       >
         {children}
+        <RotatePhoneScreen />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}

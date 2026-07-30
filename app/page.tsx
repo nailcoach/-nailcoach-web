@@ -4,6 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { type CSSProperties, useEffect, useRef, useState } from "react";
 import { IRINA_EXPERIENCE_LABEL } from "./site-content";
+import {
+  SITE_LANGUAGE_CHANGE_EVENT,
+  SITE_LANGUAGES,
+  type SiteLanguageCode,
+} from "./site-language";
 
 type IconName =
   | "ai-chat"
@@ -65,8 +70,6 @@ const stats: Array<{
   { icon: "students", value: "10,000+", label: "STUDENTS" },
   { icon: "world", value: "40+", label: "COUNTRIES" },
 ];
-
-const languages = ["English", "Русский", "Українська", "Español"];
 
 function Icon({ name }: { name: IconName }) {
   if (name === "menu") {
@@ -185,6 +188,8 @@ function Icon({ name }: { name: IconName }) {
 
 export default function Home() {
   const [languageOpen, setLanguageOpen] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] =
+    useState<SiteLanguageCode>("en");
   const [menuOpen, setMenuOpen] = useState(false);
   const [videoOpen, setVideoOpen] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
@@ -194,6 +199,23 @@ export default function Home() {
   const menuBackgroundStyle = {
     "--menu-background": `url("${basePath}/hero-background-v2.png")`
   } as CSSProperties;
+  const selectedLanguageOption =
+    SITE_LANGUAGES.find(({ code }) => code === selectedLanguage) ??
+    SITE_LANGUAGES[0];
+
+  const selectLanguage = (language: SiteLanguageCode) => {
+    setSelectedLanguage(language);
+    setLanguageOpen(false);
+  };
+
+  useEffect(() => {
+    document.documentElement.lang = selectedLanguage;
+    window.dispatchEvent(
+      new CustomEvent<SiteLanguageCode>(SITE_LANGUAGE_CHANGE_EVENT, {
+        detail: selectedLanguage,
+      }),
+    );
+  }, [selectedLanguage]);
 
   useEffect(() => {
     const closeOverlays = (event: KeyboardEvent) => {
@@ -304,18 +326,18 @@ export default function Home() {
                 aria-haspopup="menu"
                 onClick={() => setLanguageOpen((open) => !open)}
               >
-                EN <Icon name="chevron" />
+                {selectedLanguageOption.shortLabel} <Icon name="chevron" />
               </button>
               {languageOpen ? (
                 <div className="language-menu" role="menu">
-                  {languages.map((language) => (
+                  {SITE_LANGUAGES.map((language) => (
                     <button
                       type="button"
                       role="menuitem"
-                      onClick={() => setLanguageOpen(false)}
-                      key={language}
+                      onClick={() => selectLanguage(language.code)}
+                      key={language.code}
                     >
-                      {language}
+                      {language.label}
                     </button>
                   ))}
                 </div>
@@ -369,21 +391,23 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="portrait" aria-label="Portrait position for Irina">
-          <div className="portrait-contact-shadows" aria-hidden="true">
-            <span className="portrait-contact-shadow portrait-contact-shadow-left" />
-            <span className="portrait-contact-shadow portrait-contact-shadow-right" />
+        <div className="portrait-zone">
+          <div className="portrait" aria-label="Portrait position for Irina">
+            <div className="portrait-contact-shadows" aria-hidden="true">
+              <span className="portrait-contact-shadow portrait-contact-shadow-left" />
+              <span className="portrait-contact-shadow portrait-contact-shadow-right" />
+            </div>
+            <Image
+              className="portrait-image"
+              src={`${basePath}/irina-klapsha-transparent-v2.png`}
+              alt="Full-length portrait of Irina Klapsha"
+              fill
+              priority
+              sizes="(max-width: 680px) 320px, (max-width: 1050px) 60vw, 46vw"
+              unoptimized
+              style={{ objectFit: "contain", objectPosition: "center bottom" }}
+            />
           </div>
-          <Image
-            className="portrait-image"
-            src={`${basePath}/irina-klapsha-transparent-v2.png`}
-            alt="Full-length portrait of Irina Klapsha"
-            fill
-            priority
-            sizes="(max-width: 680px) 320px, (max-width: 1050px) 60vw, 46vw"
-            unoptimized
-            style={{ objectFit: "contain", objectPosition: "center bottom" }}
-          />
         </div>
 
         <aside className="highlights" aria-label="Platform capabilities">
