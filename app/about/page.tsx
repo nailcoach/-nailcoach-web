@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import {
+  IRINA_EXPERIENCE_LABEL,
+  IRINA_EXPERIENCE_YEARS,
+} from "../site-content";
 
 export const metadata: Metadata = {
   title: "About Irina Klapsha",
   description:
-    "Meet Irina Klapsha — international nail judge, certified educator, and mentor with 26 years of professional experience.",
+    `Meet Irina Klapsha — international nail judge, certified educator, and mentor with ${IRINA_EXPERIENCE_LABEL} years of professional experience.`,
   alternates: {
     canonical: "/about/",
   },
@@ -14,7 +18,7 @@ export const metadata: Metadata = {
     url: "/about/",
     title: "About Irina Klapsha | Nail Coach",
     description:
-      "Meet Irina Klapsha — international nail judge, certified educator, and mentor with 26 years of professional experience.",
+      `Meet Irina Klapsha — international nail judge, certified educator, and mentor with ${IRINA_EXPERIENCE_LABEL} years of professional experience.`,
     images: [
       {
         url: "/about-irina/irina-studio.webp",
@@ -26,7 +30,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "About Irina Klapsha | Nail Coach",
     description:
-      "Meet Irina Klapsha — international nail judge, certified educator, and mentor with 26 years of professional experience.",
+      `Meet Irina Klapsha — international nail judge, certified educator, and mentor with ${IRINA_EXPERIENCE_LABEL} years of professional experience.`,
     images: ["/about-irina/irina-studio.webp"],
   },
 };
@@ -42,7 +46,11 @@ const navigation = [
 ];
 
 const stats = [
-  { value: "26", suffix: "+", label: "Years in the profession" },
+  {
+    value: String(IRINA_EXPERIENCE_YEARS),
+    suffix: "+",
+    label: "Years in the profession",
+  },
   { value: "10,000", suffix: "+", label: "Students trained" },
   { value: "100", suffix: "+", label: "Instructors graduated" },
   { value: "150", suffix: "+", label: "Diplomas & certificates" },
@@ -72,7 +80,7 @@ const journey = [
   {
     year: "Today",
     title: "Experience without borders",
-    text: "Transforms 26 years of practice and teaching into Nail Coach — a learning experience designed to guide students from their first steps to professional mastery.",
+    text: `Transforms ${IRINA_EXPERIENCE_LABEL} years of practice and teaching into Nail Coach — a learning experience designed to guide students from their first steps to professional mastery.`,
   },
 ];
 
@@ -202,9 +210,9 @@ export default function AboutIrinaPage() {
               master since 2000.
             </p>
             <p className="about-summary">
-              For 26 years, I have turned precision, discipline, and real salon
-              experience into a teaching system that helps nail professionals
-              grow with confidence.
+              For {IRINA_EXPERIENCE_LABEL} years, I have turned precision,
+              discipline, and real salon experience into a teaching system that
+              helps nail professionals grow with confidence.
             </p>
             <div className="about-hero-links">
               <a className="about-primary-link" href="#my-story">
@@ -321,7 +329,7 @@ export default function AboutIrinaPage() {
           <div>
             <p className="about-section-label">PROFESSIONAL JOURNEY</p>
             <h2 id="journey-title">
-              26 years of learning,
+              {IRINA_EXPERIENCE_LABEL} years of learning,
               <span> leading, and raising standards.</span>
             </h2>
           </div>
@@ -459,7 +467,10 @@ export default function AboutIrinaPage() {
 
       <footer className="about-footer">
         <Brand />
-        <p>Professional nail education shaped by 26 years of experience.</p>
+        <p>
+          Professional nail education shaped by {IRINA_EXPERIENCE_LABEL} years
+          of experience.
+        </p>
         <nav aria-label="Footer navigation">
           <Link href="/courses">Courses</Link>
           <Link href="/ai-mentor">AI Mentor</Link>

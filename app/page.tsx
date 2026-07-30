@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { type CSSProperties, useEffect, useState } from "react";
+import { type CSSProperties, useEffect, useRef, useState } from "react";
+import { IRINA_EXPERIENCE_LABEL } from "./site-content";
 
 type IconName =
   | "ai-chat"
@@ -56,7 +57,11 @@ const stats: Array<{
   label: string;
 }> = [
   { icon: "judge", value: "INTERNATIONAL", label: "NAIL JUDGE" },
-  { icon: "experience", value: "26+", label: "YEARS OF EXPERIENCE" },
+  {
+    icon: "experience",
+    value: IRINA_EXPERIENCE_LABEL,
+    label: "YEARS OF EXPERIENCE",
+  },
   { icon: "students", value: "10,000+", label: "STUDENTS" },
   { icon: "world", value: "40+", label: "COUNTRIES" },
 ];
@@ -182,6 +187,9 @@ export default function Home() {
   const [languageOpen, setLanguageOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [videoOpen, setVideoOpen] = useState(false);
+  const heroRef = useRef<HTMLElement>(null);
+  const ctaGroupRef = useRef<HTMLDivElement>(null);
+  const statsRef = useRef<HTMLElement>(null);
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
   const menuBackgroundStyle = {
     "--menu-background": `url("${basePath}/hero-background-v2.png")`
@@ -200,9 +208,59 @@ export default function Home() {
     return () => window.removeEventListener("keydown", closeOverlays);
   }, []);
 
+  useEffect(() => {
+    const hero = heroRef.current;
+    const ctaGroup = ctaGroupRef.current;
+    const statsPanel = statsRef.current;
+
+    if (!hero || !ctaGroup || !statsPanel) return;
+
+    let frame = 0;
+
+    const syncMobileHighlights = () => {
+      window.cancelAnimationFrame(frame);
+      frame = window.requestAnimationFrame(() => {
+        const isVerticalMobile =
+          window.innerWidth <= 680 && window.innerHeight > window.innerWidth;
+
+        if (!isVerticalMobile) {
+          hero.style.removeProperty("--mobile-highlights-top");
+          hero.style.removeProperty("--mobile-highlights-bottom");
+          return;
+        }
+
+        const heroRect = hero.getBoundingClientRect();
+        const ctaRect = ctaGroup.getBoundingClientRect();
+        const statsRect = statsPanel.getBoundingClientRect();
+
+        hero.style.setProperty(
+          "--mobile-highlights-top",
+          `${Math.ceil(ctaRect.bottom - heroRect.top + 8)}px`,
+        );
+        hero.style.setProperty(
+          "--mobile-highlights-bottom",
+          `${Math.ceil(heroRect.bottom - statsRect.top + 8)}px`,
+        );
+      });
+    };
+
+    const resizeObserver = new ResizeObserver(syncMobileHighlights);
+    resizeObserver.observe(hero);
+    resizeObserver.observe(ctaGroup);
+    resizeObserver.observe(statsPanel);
+    window.addEventListener("resize", syncMobileHighlights);
+    syncMobileHighlights();
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      resizeObserver.disconnect();
+      window.removeEventListener("resize", syncMobileHighlights);
+    };
+  }, []);
+
   return (
     <main className="site-shell">
-      <section className="hero" aria-labelledby="hero-title">
+      <section className="hero" aria-labelledby="hero-title" ref={heroRef}>
         <Image
           className="hero-background"
           src={`${basePath}/hero-background-v2.png`}
@@ -288,13 +346,13 @@ export default function Home() {
             <span className="headline-line mentor-line">AI Mentor</span>
           </h1>
           <p className="intro">
-            25 years of experience, 10,000+ students,
+            {IRINA_EXPERIENCE_LABEL} years of experience, 10,000+ students,
             <br />
             international judge. Now my knowledge
             <br />
             is available to you 24/7 in any language.
           </p>
-          <div className="cta-group">
+          <div className="cta-group" ref={ctaGroupRef}>
             <Link className="primary-cta" href="/courses">
               START LEARNING NOW
             </Link>
@@ -346,7 +404,11 @@ export default function Home() {
           <small>NAIL EXPERT</small>
         </div>
 
-        <section className="stats" aria-label="Irina's professional statistics">
+        <section
+          className="stats"
+          aria-label="Irina's professional statistics"
+          ref={statsRef}
+        >
           {stats.map((stat) => (
             <article className="stat" key={stat.value}>
               <span className="stat-icon">

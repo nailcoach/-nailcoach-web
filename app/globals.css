@@ -1431,8 +1431,65 @@ a:focus-visible {
     display: none;
   }
 
+  .primary-cta {
+    align-self: flex-start;
+  }
+
+  .hero .hero-copy {
+    left: 13px;
+    width: calc(100% - 26px);
+  }
+
+  .hero .portrait {
+    left: min(calc(100vw - 36px), calc(100vw - 14.15dvh + 44px));
+    width: clamp(192px, calc(78.3dvh - 252px), 480px);
+  }
+
+  .hero-copy .intro {
+    width: clamp(
+      170px,
+      min(calc(100vw - 95px), calc(100vw - 28.23dvh + 65px)),
+      345px
+    );
+  }
+
   .portrait-contact-shadows {
     display: block;
+  }
+
+  .highlights {
+    top: var(--mobile-highlights-top, max(395px, 51dvh));
+    right: auto;
+    bottom: var(
+      --mobile-highlights-bottom,
+      calc(77px + env(safe-area-inset-bottom))
+    );
+    left: 10px;
+    width: clamp(148px, 44.5vw, 190px);
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: repeat(4, minmax(0, 1fr));
+  }
+
+  .highlights .highlight {
+    min-height: 0;
+    grid-template-columns: 24px minmax(0, 1fr);
+    gap: 5px;
+    padding: 4px 7px;
+  }
+
+  .highlight:nth-child(even) {
+    border-left: 0;
+  }
+
+  .highlight-icon svg {
+    width: 19px;
+    height: 19px;
+  }
+
+  .highlight h2 {
+    font-size: 7.5px;
+    line-height: 1.2;
+    white-space: nowrap;
   }
 }
 

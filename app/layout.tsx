@@ -2,11 +2,12 @@ import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import "./about.css";
+import { IRINA_EXPERIENCE_LABEL } from "./site-content";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const siteUrl = "https://www.nailcoachai.com";
 const siteDescription =
-  "Learn professional nail techniques with Irina, an international nail judge and educator with 25+ years of experience and 10,000+ students worldwide.";
+  `Learn professional nail techniques with Irina, an international nail judge and educator with ${IRINA_EXPERIENCE_LABEL} years of experience and 10,000+ students worldwide.`;
 
 const allura = localFont({
   src: "./fonts/allura-latin-400-normal.woff2",
@@ -71,6 +72,29 @@ export const metadata: Metadata = {
   creator: "Irina",
   publisher: "Nail Coach by Irina",
   category: "education",
+  manifest: `${basePath}/manifest.webmanifest?v=20260730`,
+  icons: {
+    icon: [
+      {
+        url: `${basePath}/nc-monogram-v4.svg?v=20260730`,
+        type: "image/svg+xml",
+        sizes: "any",
+      },
+      {
+        url: `${basePath}/favicon.ico?v=20260730`,
+        type: "image/x-icon",
+        sizes: "16x16 32x32 48x48",
+      },
+    ],
+    shortcut: `${basePath}/nc-monogram-v4.svg?v=20260730`,
+    apple: [
+      {
+        url: `${basePath}/apple-touch-icon.png?v=20260730`,
+        type: "image/png",
+        sizes: "180x180",
+      },
+    ],
+  },
   alternates: {
     canonical: "/",
   },
