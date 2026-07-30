@@ -402,17 +402,46 @@ a:focus-visible {
 .portrait {
   position: absolute;
   z-index: 8;
-  top: 8.2%;
-  bottom: 7.1%;
-  left: 44.2%;
-  width: 23.2%;
+  top: 91.6%;
+  left: 55.8%;
+  width: min(44.9vw, 68.6vh);
+  aspect-ratio: 1032 / 1524;
   pointer-events: none;
+  transform: translate(-51.8%, -88.6%);
 }
 
 .portrait-image {
+  z-index: 1;
   object-fit: contain;
   object-position: center bottom;
   filter: drop-shadow(0 14px 15px rgba(45, 30, 27, 0.12));
+}
+
+.portrait-contact-shadows {
+  display: none;
+}
+
+.portrait-contact-shadow {
+  position: absolute;
+  z-index: 0;
+  height: 1.05%;
+  border-radius: 50%;
+  background: rgba(60, 45, 39, 0.2);
+  filter: blur(3px);
+}
+
+.portrait-contact-shadow-left {
+  top: 86.7%;
+  left: 40.8%;
+  width: 10.5%;
+  transform: rotate(-4deg);
+}
+
+.portrait-contact-shadow-right {
+  top: 88.5%;
+  left: 62.3%;
+  width: 9.2%;
+  transform: rotate(3deg);
 }
 
 .highlights {
@@ -567,6 +596,13 @@ a:focus-visible {
   font-size: clamp(18px, 1.45vw, 22px);
   font-weight: 500;
   line-height: 1.15;
+}
+
+.stat:first-child strong {
+  font-size: clamp(9px, 0.75vw, 11px);
+  font-weight: 600;
+  letter-spacing: 0.035em;
+  white-space: nowrap;
 }
 
 .stat p {
@@ -798,8 +834,9 @@ a:focus-visible {
   }
 
   .portrait {
-    left: 43%;
-    width: 24%;
+    top: 91.7%;
+    left: 55%;
+    width: min(46.4vw, 68.6vh);
   }
 
   .highlights {
@@ -847,10 +884,9 @@ a:focus-visible {
   }
 
   .portrait {
-    top: 12%;
-    bottom: 11%;
-    left: 39%;
-    width: 31%;
+    top: 87.8%;
+    left: 54.5%;
+    width: min(59.8vw, 62.4vh);
   }
 
   .highlights {
@@ -984,11 +1020,10 @@ a:focus-visible {
   }
 
   .portrait {
-    top: 30%;
-    right: -1%;
-    bottom: 11.5%;
-    left: auto;
-    width: 49%;
+    top: 87.5%;
+    right: auto;
+    left: 76.3%;
+    width: min(94.5vw, 47.5vh);
   }
 
   .counter-signature {
@@ -1137,7 +1172,7 @@ a:focus-visible {
   }
 
   .brand-script {
-    font-size: 29px;
+    font-size: clamp(24px, 7.6vw, 29px);
   }
 
   .brand-byline {
@@ -1223,8 +1258,10 @@ a:focus-visible {
   }
 
   .primary-cta {
-    width: 240px;
-    min-height: 48px;
+    width: 210px;
+    min-height: 44px;
+    align-self: center;
+    padding-inline: 16px;
     font-size: 11px;
   }
 
@@ -1245,12 +1282,17 @@ a:focus-visible {
 
   .portrait {
     z-index: 5;
-    top: 44%;
-    right: -2%;
-    bottom: calc(180px + env(safe-area-inset-bottom));
-    left: auto;
-    width: 73%;
+    top: 85.2%;
+    right: auto;
+    left: 70%;
+    width: clamp(128px, calc(52.2dvh - 168px), 320px);
     opacity: 0.99;
+  }
+
+  .portrait-contact-shadows {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
   }
 
   .counter-signature {
@@ -1349,23 +1391,48 @@ a:focus-visible {
   }
 
   .stat {
-    display: block;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 1px;
     padding: 0 4px;
     text-align: center;
   }
 
   .stat-icon {
-    display: none;
+    display: block;
+    margin: 0;
+    line-height: 0;
+  }
+
+  .stat-icon svg {
+    width: 15px;
+    height: 15px;
   }
 
   .stat strong {
-    font-size: 13px;
+    font-size: 11px;
+  }
+
+  .stat:first-child strong {
+    font-size: 7px;
+    letter-spacing: 0.02em;
   }
 
   .stat p {
-    margin-top: 3px;
-    font-size: 7px;
+    margin-top: 1px;
+    font-size: 6.4px;
     line-height: 1.23;
+  }
+}
+
+@media (max-width: 680px) and (orientation: portrait) {
+  .counter-signature {
+    display: none;
+  }
+
+  .portrait-contact-shadows {
+    display: block;
   }
 }
 
@@ -1390,10 +1457,6 @@ a:focus-visible {
     width: 328px;
   }
 
-  .portrait {
-    top: 46%;
-    width: 72%;
-  }
 }
 
 @media (max-width: 680px) and (max-height: 820px) {
@@ -1435,10 +1498,6 @@ a:focus-visible {
     min-height: 40px;
   }
 
-  .portrait {
-    top: 44%;
-  }
-
   .highlight {
     min-height: 44px;
   }
@@ -1448,7 +1507,13 @@ a:focus-visible {
   }
 }
 
-@media (min-width: 681px) and (max-height: 800px) {
+@media (max-width: 680px) and (max-height: 700px) {
+  .portrait {
+    left: 78%;
+  }
+}
+
+@media (min-width: 1051px) and (max-height: 800px) {
   .topbar {
     top: max(18px, env(safe-area-inset-top));
   }
@@ -1484,8 +1549,9 @@ a:focus-visible {
   }
 
   .portrait {
-    top: 9.5%;
-    bottom: 8%;
+    top: 90.6%;
+    left: 55.4%;
+    width: min(44.9vw, 66.8vh);
   }
 
   .highlights {
