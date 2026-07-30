@@ -383,6 +383,10 @@ a:focus-visible {
   color: var(--accent-dark);
 }
 
+.portrait-zone {
+  display: contents;
+}
+
 .play-icon {
   display: inline-flex;
   width: 40px;
@@ -1427,6 +1431,21 @@ a:focus-visible {
 }
 
 @media (max-width: 680px) and (orientation: portrait) {
+  .hero {
+    --mobile-highlights-left: 10px;
+    --mobile-highlights-width: clamp(148px, 44.5vw, 190px);
+    --mobile-cta-right: 223px;
+    --mobile-portrait-visible-width: clamp(
+      69.21px,
+      calc(28.224dvh - 90.84px),
+      173.03px
+    );
+    --mobile-portrait-safe-right: max(
+      14px,
+      env(safe-area-inset-right)
+    );
+  }
+
   .counter-signature {
     display: none;
   }
@@ -1440,8 +1459,31 @@ a:focus-visible {
     width: calc(100% - 26px);
   }
 
+  .portrait-zone {
+    position: absolute;
+    z-index: 5;
+    top: 0;
+    right: var(--mobile-portrait-safe-right);
+    bottom: 0;
+    left: max(
+      calc(
+        var(--mobile-highlights-left) + var(--mobile-highlights-width)
+      ),
+      min(
+        var(--mobile-cta-right),
+        calc(
+          100vw
+          - var(--mobile-portrait-safe-right)
+          - var(--mobile-portrait-visible-width)
+        )
+      )
+    );
+    display: block;
+    pointer-events: none;
+  }
+
   .hero .portrait {
-    left: min(calc(100vw - 36px), calc(100vw - 14.15dvh + 44px));
+    left: 50%;
     width: clamp(192px, calc(78.3dvh - 252px), 480px);
   }
 
@@ -1464,8 +1506,8 @@ a:focus-visible {
       --mobile-highlights-bottom,
       calc(77px + env(safe-area-inset-bottom))
     );
-    left: 10px;
-    width: clamp(148px, 44.5vw, 190px);
+    left: var(--mobile-highlights-left);
+    width: var(--mobile-highlights-width);
     grid-template-columns: minmax(0, 1fr);
     grid-template-rows: repeat(4, minmax(0, 1fr));
   }
@@ -1490,6 +1532,127 @@ a:focus-visible {
     font-size: 7.5px;
     line-height: 1.2;
     white-space: nowrap;
+  }
+}
+
+.rotate-phone-screen {
+  display: none;
+}
+
+@keyframes rotate-phone-screen-fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media (orientation: landscape) and (pointer: coarse) and (max-height: 500px) {
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  body > :not(.rotate-phone-screen) {
+    visibility: hidden;
+  }
+
+  .rotate-phone-screen {
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    display: flex;
+    width: 100vw;
+    height: 100dvh;
+    min-height: 100dvh;
+    max-height: 100dvh;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding:
+      max(8px, env(safe-area-inset-top))
+      max(14px, env(safe-area-inset-right))
+      max(8px, env(safe-area-inset-bottom))
+      max(14px, env(safe-area-inset-left));
+    background:
+      radial-gradient(
+        circle at 50% 42%,
+        rgba(255, 255, 255, 0.2),
+        transparent 58%
+      ),
+      var(--background);
+    color: #6f4354;
+    visibility: visible;
+    animation: rotate-phone-screen-fade 220ms ease-out both;
+  }
+
+  .rotate-phone-content {
+    display: grid;
+    width: min(100%, 620px);
+    max-height: 100%;
+    justify-items: center;
+    gap: clamp(5px, 2.2dvh, 10px);
+    text-align: center;
+  }
+
+  .rotate-phone-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #60394a;
+  }
+
+  .rotate-phone-brand-script {
+    font-family: var(--font-allura), cursive;
+    font-size: clamp(28px, 10dvh, 42px);
+    font-weight: 400;
+    line-height: 0.8;
+    white-space: nowrap;
+  }
+
+  .rotate-phone-brand-byline {
+    margin-top: 5px;
+    font-size: clamp(6px, 2.25dvh, 9px);
+    letter-spacing: 0.3em;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .rotate-phone-icon {
+    width: clamp(54px, 18dvh, 76px);
+    height: clamp(54px, 18dvh, 76px);
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2.6;
+  }
+
+  .rotate-phone-title,
+  .rotate-phone-subtitle {
+    margin: 0;
+  }
+
+  .rotate-phone-title {
+    max-width: 100%;
+    color: #573343;
+    font-size: clamp(13px, 4.2dvh, 18px);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    line-height: 1.25;
+    text-wrap: balance;
+  }
+
+  .rotate-phone-subtitle {
+    max-width: min(92vw, 520px);
+    color: rgba(87, 51, 67, 0.78);
+    font-size: clamp(9px, 3dvh, 12px);
+    line-height: 1.35;
+    text-wrap: balance;
   }
 }
 
@@ -1631,6 +1794,7 @@ a:focus-visible {
   *,
   *::before,
   *::after {
+    animation-duration: 0.01ms !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
   }
