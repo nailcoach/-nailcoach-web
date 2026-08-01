@@ -30,7 +30,7 @@ const navigation = [
   { label: "Courses", href: "/courses" },
   { label: "AI Mentor", href: "/ai-mentor" },
   { label: "Pricing", href: "/pricing" },
-  { label: "Reviews", href: "/reviews" },
+  { label: "Play", href: "/nail-rush" },
   { label: "Contacts", href: "/contacts" },
 ];
 
