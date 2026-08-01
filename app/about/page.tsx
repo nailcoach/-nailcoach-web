@@ -5,6 +5,7 @@ import {
   IRINA_EXPERIENCE_LABEL,
   IRINA_EXPERIENCE_YEARS,
 } from "../site-content";
+import CertificateGallery from "./CertificateGallery";
 
 export const metadata: Metadata = {
   title: "About Irina Klapsha",
@@ -81,39 +82,6 @@ const journey = [
     year: "Today",
     title: "Experience without borders",
     text: `Transforms ${IRINA_EXPERIENCE_LABEL} years of practice and teaching into Nail Coach — a learning experience designed to guide students from their first steps to professional mastery.`,
-  },
-];
-
-const credentials = [
-  {
-    mark: "IBD",
-    title: "Certified Educator",
-    text: "Certified educator in the professional IBD nail enhancement system.",
-  },
-  {
-    mark: "EZ",
-    title: "EzFlow Master Designer",
-    text: "Master-level professional qualification in the EzFlow nail system.",
-  },
-  {
-    mark: "ME",
-    title: "International Master-Expert",
-    text: "Master-Expert International Class in nail aesthetics and modeling.",
-  },
-  {
-    mark: "J",
-    title: "International Judge",
-    text: "International-category judge in professional nail aesthetics championships.",
-  },
-  {
-    mark: "XI",
-    title: "Championship Prizewinner",
-    text: "Prizewinner of the XI Ukrainian Nail Modeling Championship.",
-  },
-  {
-    mark: "NN",
-    title: "NanoNails Technologist",
-    text: "Professional brand technologist and advanced technique specialist.",
   },
 ];
 
@@ -368,24 +336,13 @@ export default function AboutIrinaPage() {
             <span> The standard behind them matters more.</span>
           </h2>
           <p>
-            More than 100 advanced training programs and over 150 diplomas
-            document a career built on continuous professional development.
+            A selected archive of English-language certificates and verified
+            U.S. judging records from a career built on continuous professional
+            development.
           </p>
         </div>
 
-        <div className="about-credential-grid">
-          {credentials.map((credential) => (
-            <article key={credential.title}>
-              <span className="about-credential-mark" aria-hidden="true">
-                {credential.mark}
-              </span>
-              <div>
-                <h3>{credential.title}</h3>
-                <p>{credential.text}</p>
-              </div>
-            </article>
-          ))}
-        </div>
+        <CertificateGallery />
 
         <aside className="about-credential-proof">
           <strong>100+</strong>
