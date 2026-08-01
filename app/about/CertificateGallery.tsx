@@ -69,7 +69,7 @@ const professionalCertificates: Certificate[] = [
     title: "Natural Nail Care & Spa Manicure",
     issuer: "American Beauty International",
     year: "2003",
-    note: "The original document carries the name Irina Savescul.",
+    note: "This certificate was issued under Irina’s maiden name, Savescul. Her current name is Irina Klapsha.",
   },
   {
     id: "abi-spa-pedicure",
@@ -78,7 +78,7 @@ const professionalCertificates: Certificate[] = [
     title: "Spa Pedicure",
     issuer: "American Beauty International",
     year: "2003",
-    note: "The original document carries the name Irina Savescul.",
+    note: "This certificate was issued under Irina’s maiden name, Savescul. Her current name is Irina Klapsha.",
   },
   {
     id: "abi-nail-sculpting",
@@ -87,7 +87,7 @@ const professionalCertificates: Certificate[] = [
     title: "Nail Sculpting, Overlays & Rebalancing",
     issuer: "American Beauty International",
     year: "2003",
-    note: "The original document carries the name Irina Savescul.",
+    note: "This certificate was issued under Irina’s maiden name, Savescul. Her current name is Irina Klapsha.",
   },
 ];
 
