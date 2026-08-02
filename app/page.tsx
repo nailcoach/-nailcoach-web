@@ -368,11 +368,10 @@ export default function Home() {
             <span className="headline-line mentor-line">AI Mentor</span>
           </h1>
           <p className="intro">
-            {IRINA_EXPERIENCE_LABEL} years of experience, 10,000+ students,
+            I combine 26+ years of experience as an educator and international
+            judge with advanced AI to support your growth.
             <br />
-            international judge. Now my knowledge
-            <br />
-            is available to you 24/7 in any language.
+            <strong>Get expert guidance 24/7 in any language.</strong>
           </p>
           <div className="cta-group" ref={ctaGroupRef}>
             <Link className="primary-cta" href="/courses">
